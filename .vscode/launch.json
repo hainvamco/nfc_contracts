@@ -5,9 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "nfc_contracts",
+            "name": "nfc_contracts(DEBUG)",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "program": "lib/main.dart",
+            
         },
         {
             "name": "nfc_contracts (profile mode)",
