@@ -9,7 +9,12 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
-            
+        },
+        {
+            "name": "main2(TEST)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main2.dart",
         },
         {
             "name": "nfc_contracts (profile mode)",

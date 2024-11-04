@@ -8,6 +8,7 @@ import 'package:app_links/app_links.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nfc_contracts/const/firebase_message.dart';
 import 'package:nfc_contracts/data/repository/firebase_repo.dart';
 import 'package:nfc_contracts/main.route.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,7 @@ import 'package:nfc_contracts/presenter/splash/cubit/splash_cubit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseApi().initNotification();
   runApp(const MyApp());
 }
 
