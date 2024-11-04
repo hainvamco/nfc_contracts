@@ -31,4 +31,17 @@ class FirebaseRepo {
       },
     );
   }
+
+  void updateUserFirebase({required String userId}) {
+    _userCollection
+        .doc(userId)
+        .withConverter(
+            fromFirestore: (snap, options) =>
+                UsersFirebase.fromJson(snap.data() ?? {}),
+            toFirestore: (value, options) => value.toJson())
+        .set(UsersFirebase(
+          id: '2',
+          name: 'changename',
+        ));
+  }
 }

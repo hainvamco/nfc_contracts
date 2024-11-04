@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nfc_contracts/main.dart';
 import 'package:nfc_contracts/main.route.dart';
 import 'package:nfc_contracts/presenter/splash/cubit/splash_cubit.dart';
 
@@ -35,6 +36,12 @@ class HomePage extends StatelessWidget {
                   context.read<SplashCubit>().increateCount();
                 },
                 child: const Text('Increate splash'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  firebaseRepo.updateUserFirebase(userId: idUserFirebase);
+                },
+                child: const Text('Change'),
               ),
             ],
           ),

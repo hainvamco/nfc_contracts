@@ -21,6 +21,7 @@ void main() async {
 
 final navigatorKey = GlobalKey<NavigatorState>();
 final firebaseRepo = FirebaseRepo();
+String idUserFirebase = '';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -62,6 +63,7 @@ class _MyAppState extends State<MyApp> {
 
   void openAppLink(Uri uri) async {
     var data = getQueryValue(uri.query);
+    idUserFirebase = data;
     // navigatorKey.currentState?.pushNamed(uri.fragment);
     var userFirebase = await firebaseRepo.getUserById(idUser: data);
 
