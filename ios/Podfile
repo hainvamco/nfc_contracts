@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '12.0'
+platform :ios, '13.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -31,14 +31,50 @@ target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
+  # pod 'FirebaseFirestore',
+  #   :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git',
+  #   :tag => '10.29.0'
+
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   target 'RunnerTests' do
     inherit! :search_paths
   end
 end
 
+# post_install do |installer|
+#   installer.pods_project.targets.each do |target|
+#     flutter_additional_ios_build_settings(target)
+#   end
+# end
+
 post_install do |installer|
+  installer.generated_projects.each do |project|
+    project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      end
+    end
+  end
+
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
   end
 end
+
+# post_install do |installer|
+#   installer.pods_project.targets.each do |target|
+#     # Thiết lập IPHONEOS_DEPLOYMENT_TARGET cho tất cả các targets
+#     target.build_configurations.each do |config|
+#       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+#     end
+
+#     # Điều chỉnh cấu hình đặc biệt cho abseil
+#     if target.name == 'abseil'
+#       Pod::UI.puts "Workaround: Configuring abseil to use gnu++14 language standard for cocoapods 1.16+ compatibility".yellow
+#       Pod::UI.puts "            Remove workaround when upstream issue fixed https://github.com/firebase/firebase-ios-sdk/issues/13996".yellow
+#       target.build_configurations.each do |config|
+#         config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'gnu++14'
+#       end
+#     end
+#   end
+# end
