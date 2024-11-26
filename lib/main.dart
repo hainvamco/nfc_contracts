@@ -67,13 +67,18 @@ class _MyAppState extends State<MyApp> {
     var data = getQueryValue(uri.query);
     idUserFirebase = data;
     // navigatorKey.currentState?.pushNamed(uri.fragment);
-    var userFirebase = await firebaseRepo.getUserById(idUser: data);
+    // var userFirebase = await firebaseRepo.getUserById(idUser: data);
 
-    // if (data == 'gogo') {
-    if (userFirebase.id != null && userFirebase.id!.isNotEmpty) {
-      navigatorKey.currentContext?.push(RouterPath.routerHome);
+    var loginData = await firebaseRepo.findUserInAllContracts(data);
+    print('---user: ${loginData?.userData?.id}');
+
+    if (loginData?.userData?.id != null &&
+        loginData!.userData!.id!.isNotEmpty) {
+      navigatorKey.currentContext
+          ?.push(RouterPath.routerHome, extra: loginData.toJson());
     } else {
-      navigatorKey.currentContext?.push(RouterPath.routerRegister);
+      navigatorKey.currentContext
+          ?.push(RouterPath.routerRegister, extra: idUserFirebase);
     }
   }
 

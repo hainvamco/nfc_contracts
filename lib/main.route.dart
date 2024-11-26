@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nfc_contracts/data/model/login_data.model.dart';
 import 'package:nfc_contracts/main.dart';
 import 'package:nfc_contracts/presenter/home/home.page.dart';
 import 'package:nfc_contracts/presenter/register/register.page.dart';
+import 'package:nfc_contracts/presenter/register/register_cubit/register_cubit.dart';
 import 'package:nfc_contracts/presenter/splash/splash.page.dart';
 import 'package:rxdart/subjects.dart';
 
@@ -20,13 +23,25 @@ final GoRouter routerMain = GoRouter(
         GoRoute(
           path: RouterPath.routerHome,
           builder: (BuildContext context, GoRouterState state) {
-            return const HomePage();
+            var loginData =
+                LoginData.fromJson(state.extra as Map<String, dynamic>);
+            print('---login data: ${loginData.toJson()}');
+            return HomePage(
+              loginData: loginData,
+            );
           },
         ),
         GoRoute(
           path: RouterPath.routerRegister,
           builder: (BuildContext context, GoRouterState state) {
-            return const RegisterPage();
+            var idUserFirebase = state.extra as String;
+            return BlocProvider(
+              lazy: false,
+              create: (context) => RegisterCubit(),
+              child: RegisterPage(
+                idUserFirebase: idUserFirebase,
+              ),
+            );
           },
         ),
       ],

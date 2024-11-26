@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nfc_contracts/main.dart';
-import 'package:nfc_contracts/main.route.dart';
-import 'package:nfc_contracts/presenter/splash/cubit/splash_cubit.dart';
+import 'package:nfc_contracts/data/model/login_data.model.dart';
+import 'package:nfc_contracts/presenter/home/user_info.dart';
 
 class HomePage extends StatelessWidget {
   /// Constructs a [HomePage]
-  const HomePage({super.key});
+  final LoginData loginData;
+  const HomePage({super.key, required this.loginData});
 
   @override
   Widget build(BuildContext context) {
@@ -14,35 +13,16 @@ class HomePage extends StatelessWidget {
       canPop: false,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Home Page'),
+          title: const Text('NFC Contracts'),
           automaticallyImplyLeading: false,
         ),
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  context.popUntilPath(routePath: '/');
-                },
-                child: const Text('Go Splash'),
-              ),
-              BlocBuilder<SplashCubit, SplashState>(
-                builder: (context, state) {
-                  return Text(state.count.toString());
-                },
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  context.read<SplashCubit>().increateCount();
-                },
-                child: const Text('Increate splash'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  firebaseRepo.updateUserFirebase(userId: idUserFirebase);
-                },
-                child: const Text('Change'),
-              ),
+              UserContractInfo(
+                  userName: loginData.userData?.name,
+                  contractName: loginData.contractData?.name),
             ],
           ),
         ),
