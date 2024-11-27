@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('token ${PrefUtil.getToken()}'),
+              // Text('token ${PrefUtil.getToken()}'),
               UserContractInfo(
                   userName:
                       '${widget.loginData.userData?.name} - ${widget.loginData.userData?.id} \n- ${widget.loginData.userDocId}',
