@@ -63,6 +63,7 @@ class FirebaseRepo {
         var contract = ContractsFirebase.fromJson(contractDoc.data());
         // var name = contractDoc.data()['name'] ?? '';
         print('---name contracts: ${contract.name}');
+        print('---@: ${contractDoc.id}');
         var usersSnapshot = await contractDoc.reference
             .collection('users')
             .doc(userId)
@@ -75,6 +76,8 @@ class FirebaseRepo {
         if (usersSnapshot.exists) {
           return LoginData(
             contractData: contract,
+            contractsDocId: contractDoc.id,
+            userDocId: userId,
             userData: usersSnapshot.data(),
           );
         }
@@ -126,5 +129,16 @@ class FirebaseRepo {
     } catch (e) {
       print("Lỗi khi thêm contract và user: $e");
     }
+  }
+
+  Future<void> setTokenUserLogin(
+      {required String contractId,
+      // required String userId,
+      required String tokenFirebase}) async {
+    await _contractsCollection.doc(contractId).update({
+      'token': tokenFirebase,
+    });
+    // .collection('users')
+    // .doc(idm)
   }
 }

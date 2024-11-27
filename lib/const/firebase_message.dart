@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:nfc_contracts/const/share_storage.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
@@ -73,7 +74,10 @@ class FirebaseApi {
         );
       }
       FirebaseMessaging.instance.getToken().then((token) async {
-        print("token firebase $token");
+        print("---token firebase $token");
+        if (token != null && token.isNotEmpty) {
+          PrefUtil.setToken(token: token);
+        }
       });
     } catch (e) {
       print(e);
