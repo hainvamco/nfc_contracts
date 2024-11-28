@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:200593909130:android:efa5d5d523bd5fae985473",
+        "android_client_info": {
+          "package_name": "com.amco.nfc_contracts"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiFu2cWEwDVyZcC5Ymy9DVEfRp1cXLiYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:200593909130:android:b421488a9a19be1a985473",
         "android_client_info": {
           "package_name": "com.example.nfc_contracts"

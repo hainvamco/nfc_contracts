@@ -42,10 +42,10 @@ class _HomePageState extends State<HomePage> {
             children: [
               // Text('token ${PrefUtil.getToken()}'),
               UserContractInfo(
-                  userName:
-                      '${widget.loginData.userData?.name} - ${widget.loginData.userData?.id} \n- ${widget.loginData.userDocId}',
-                  contractName:
-                      '${widget.loginData.contractData?.name} - ${widget.loginData.contractData?.id} \n- ${widget.loginData.contractsDocId}'),
+                  userName: '${widget.loginData.userData?.name}',
+                  // '${widget.loginData.userData?.name} - ${widget.loginData.userData?.id} \n- ${widget.loginData.userDocId}',
+                  contractName: '${widget.loginData.contractData?.name}'),
+              // '${widget.loginData.contractData?.name} - ${widget.loginData.contractData?.id} \n- ${widget.loginData.contractsDocId}'),
             ],
           ),
         ),

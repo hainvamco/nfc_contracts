@@ -1,4 +1,4 @@
-package com.example.nfc_contracts
+package com.amco.nfc_contracts
 
 import io.flutter.embedding.android.FlutterActivity
 
