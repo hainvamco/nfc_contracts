@@ -67,6 +67,7 @@ class _MyAppState extends State<MyApp> {
 
   void openAppLink(Uri uri) async {
     var data = getQueryValue(uri.query);
+    navigatorKey.currentContext?.read<SplashCubit>().setLoading(true);
     idUserFirebase = data;
     // navigatorKey.currentState?.pushNamed(uri.fragment);
     // var userFirebase = await firebaseRepo.getUserById(idUser: data);
