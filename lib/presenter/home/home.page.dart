@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
         PrefUtil.getToken()!.isNotEmpty) {
       FirebaseRepo().setTokenUserLogin(
           contractId: widget.loginData.contractsDocId ?? '',
+          userDocId: widget.loginData.userDocId ?? '',
           tokenFirebase: PrefUtil.getToken() ?? '');
     }
   }

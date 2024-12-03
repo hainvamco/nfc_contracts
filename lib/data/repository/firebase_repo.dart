@@ -102,14 +102,16 @@ class FirebaseRepo {
     required String idm,
     required String name,
     required String contractsName,
+    required String token,
     required Function(LoginData) onSuccess,
   }) async {
     try {
-      String contractId = generateRandomId(10);
-
-      await _contractsCollection.doc(contractId).set({
-        'name': contractsName,
-      });
+      // String contractId = generateRandomId(10);
+      var contractId = '1';
+      // await _contractsCollection.doc('1').set({
+      //   'name': contractsName,
+      //   'id': '1',
+      // });
 
       await _contractsCollection
           .doc(contractId)
@@ -118,6 +120,7 @@ class FirebaseRepo {
           .set({
         'id': idm,
         'name': name,
+        'token': token,
       });
       onSuccess(LoginData(
           contractData: ContractsFirebase(name: contractsName, id: contractId),
@@ -133,9 +136,14 @@ class FirebaseRepo {
 
   Future<void> setTokenUserLogin(
       {required String contractId,
+      required String userDocId,
       // required String userId,
       required String tokenFirebase}) async {
-    await _contractsCollection.doc(contractId).update({
+    await _contractsCollection
+        .doc(contractId)
+        .collection('users')
+        .doc(userDocId)
+        .update({
       'token': tokenFirebase,
     });
     // .collection('users')

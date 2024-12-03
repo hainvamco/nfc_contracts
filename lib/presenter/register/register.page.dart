@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nfc_contracts/const/share_storage.dart';
 import 'package:nfc_contracts/main.dart';
 import 'package:nfc_contracts/main.route.dart';
 import 'package:nfc_contracts/presenter/register/register_cubit/register_cubit.dart';
@@ -48,6 +49,7 @@ class RegisterPage extends StatelessWidget {
                               idm: idUserFirebase,
                               name: state.name,
                               contractsName: 'demo',
+                              token: PrefUtil.getToken() ?? '',
                               onSuccess: (result) {
                                 context.push(RouterPath.routerHome,
                                     extra: result.toJson());
