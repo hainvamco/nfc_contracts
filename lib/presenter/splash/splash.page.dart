@@ -23,7 +23,20 @@ class SplashPage extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                if (state.isLoading) const FancyLoadingIndicator(),
+                if (state.isLoading)
+                  const Column(
+                    children: [
+                      FancyLoadingIndicator(),
+                      SizedBox(height: 8),
+                      Text(
+                        'Loading...',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
               ],
             ),
           );
